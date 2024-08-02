@@ -1,25 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planilla de Votación</title>
-    <style>
-        body {
-            background-image: url('https://i.ibb.co/1vjMcPy/Fondo.png');
-            background-size: cover;
-            background-position: center;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Planilla de Votación</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Monument:wght@400;700&display=swap">
+        <style>
+            body {
+                background-image: url('https://i.ibb.co/1vjMcPy/Fondo.png');
+                background-size: cover;
+                background-position: center;
+                color: #ffffff;
+                font-family: 'Monument', Arial, sans-serif;
+                text-align: center;
+                margin: 0;
+                padding: 0;
+            }
 
         /* CSS para ocultar el botón al inicio */
 #resultado {
     display: none;
 }
+
+.red {
+        color: red;
+    }
+    .gold {
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+    background-color: gold;
+}
+    .default {
+        color: black;
+    }
+
 
         .container {
             padding: 20px;
@@ -634,6 +648,31 @@
         document.getElementById('inicio').style.display = 'none';
         document.getElementById('votacion').style.display = 'block';
     }
+
+      // Función para actualizar el color del texto según el valor
+      function updateColor(event) {
+        const value = parseFloat(event.target.value);
+        const inputElement = event.target;
+        
+        // Limpiar las clases de color antes de aplicar una nueva
+        inputElement.classList.remove('red', 'gold', 'default');
+
+        // Aplicar color según el valor del input
+        if (value === 3) {
+            inputElement.classList.add('red');
+        } else if (value === 3.5) {
+            inputElement.classList.add('red');
+        } else if (value === 4) {
+            inputElement.classList.add('gold');
+        } else {
+            inputElement.classList.add('default');
+        }
+    }
+
+    // Obtener todos los campos de entrada y añadir el evento de cambio
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+        input.addEventListener('input', updateColor);
+    });
 
     function showResultPage() {
         const mc1Scores = document.querySelectorAll('#votacion .mc1');
