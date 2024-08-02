@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planilla de Votación</title>
+    <style>
+        body {
+            background-image: url('https://i.ibb.co/1vjMcPy/Fondo.png');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* CSS para ocultar el botón al inicio */
+#resultado {
+    display: none;
+}
+
+        .container {
+            padding: 20px;
+        }
+        .button {
+            background-color: #5900fd;
+            color: rgb(255, 255, 255);
+            padding: 15px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        .mode {
+            border: 4px solid #5900fd;
+            padding: 10px;
+            margin: 20px 0;
+        }
+        .score {
+            display: inline-block;
+            margin: 10px;
+        }
+        .score input {
+            width: 50px;
+            text-align: center;
+        }
+        .highlight {
+            color: #a200ff;
+        }
+        .score-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .mc-column {
+            margin: 0 20px;
+        }
+        .mc-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .logo {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Página de Inicio -->
+        <div id="inicio">
+            <img src="https://i.ibb.co/FV3twMt/LogoT2.png" alt="LogoT2" class="logo">
+            <div>
+                <input type="text" id="mc1-name" placeholder="Nombre MC1">
+                <h2>VS</h2>
+                <input type="text" id="mc2-name" placeholder="Nombre MC2">
+            </div>
+            <button class="button" onclick="showVotingPage()">CONTINUAR</button>
+        </div>
+
+        <!-- Planilla de Votación -->
+        <div id="votacion" style="display: none;">
+            <div class="mode">
+                <h2>Easy Mode</h2>
+                <div class="score-container">
+                    <div class="mc-column">
+                        <div class="mc-name" id="label-mc1">MC1</div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <label>Técnicas:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <label>Flow:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <label>Puesta en Escena:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                    </div>
+                    <div class="mc-column">
+                        <div class="mc-name" id="label-mc2">MC2</div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <label>Técnicas:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <label>Flow:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <label>Puesta en Escena:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mode">
+                <h2>Hard Mode</h2>
+                <div class="score-container">
+                    <div class="mc-column">
+                        <div class="mc-name" id="label-mc1-hard">MC1</div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <label>Técnicas:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <label>Flow:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <label>Puesta en Escena:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                    </div>
+                    <div class="mc-column">
+                        <div class="mc-name" id="label-mc2-hard">MC2</div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <label>Técnicas:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <label>Flow:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <label>Puesta en Escena:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mode">
+                <h2>Kickback</h2>
+                <div class="score-container">
+                    <div class="mc-column">
+                        <div class="mc-name" id="label-mc1-kickback">MC1</div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                    
+                        <div class="score">
+                            <label>Técnicas:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <label>Flow:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <label>Puesta en Escena:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                    </div>
+                    <div class="mc-column">
+                        <div class="mc-name" id="label-mc2-kickback">MC2</div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <label>Técnicas:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <label>Flow:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <label>Puesta en Escena:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mode">
+                <h2>Random Mode</h2>
+                <div class="score-container">
+                    <div class="mc-column">
+                        <div class="mc-name" id="label-mc1-random">MC1</div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <label>Técnicas:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <label>Flow:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <label>Puesta en Escena:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                    </div>
+                    <div class="mc-column">
+                        <div class="mc-name" id="label-mc2-random">MC2</div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <label>Técnicas:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <label>Flow:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <label>Puesta en Escena:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mode">
+                <h2>Minutos Ida</h2>
+                <div class="score-container">
+                    <div class="mc-column">
+                        <div class="mc-name" id="label-mc1-minutos-ida">MC1</div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <label>Técnicas:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <label>Flow:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <label>Puesta en Escena:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                    </div>
+                    <div class="mc-column">
+                        <div class="mc-name" id="label-mc2-minutos-ida">MC2</div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <label>Técnicas:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <label>Flow:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <label>Puesta en Escena:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mode">
+                <h2>Minutos Vuelta</h2>
+                <div class="score-container">
+                    <div class="mc-column">
+                        <div class="mc-name" id="label-mc1-minutos-ida">MC1</div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <label>Técnicas:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <label>Flow:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <label>Puesta en Escena:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                    </div>
+                    <div class="mc-column">
+                        <div class="mc-name" id="label-mc2-minutos-ida">MC2</div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <label>Técnicas:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <label>Flow:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <label>Puesta en Escena:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mode">
+                <h2>Deluxe</h2>
+                <div class="score-container">
+                    <div class="mc-column">
+                        <div class="mc-name" id="label-mc1-minutos-ida">MC1</div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <label>Técnicas:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <label>Flow:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <label>Puesta en Escena:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                    </div>
+                    <div class="mc-column">
+                        <div class="mc-name" id="label-mc2-minutos-ida">MC2</div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc1">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <label>Técnicas:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <label>Flow:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                        <div class="score">
+                            <label>Puesta en Escena:</label>
+                            <input type="number" min="0" max="10" step="0.1" class="mc2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+
+            
+            <button class="button" onclick="showResultPage()">RESULTADO</button>
+</div>
+
+<!-- Página de Resultados -->
+<div id="resultado">
+    <h1>RESULTADO</h1>
+    <h2 id="mc1-result" class="mc-result">MC1 <span id="mc1-score">0.0</span> p</h2>
+    <h2>VS</h2>
+    <h2 id="mc2-result" class="mc-result">MC2 <span id="mc2-score">0.0</span> p</h2>
+    <p>No te olvides de sacarle captura al resultado!</p>
+    <button class="button" onclick="resetPage()">Volver a Votar</button>
+</div>
+
+<script>
+    function showVotingPage() {
+        const mc1Name = document.getElementById('mc1-name').value;
+        const mc2Name = document.getElementById('mc2-name').value;
+
+        if (mc1Name.trim() === '' || mc2Name.trim() === '') {
+            alert("Por favor, ingrese los nombres de ambos MCs.");
+            return;
+        }
+
+        // Actualiza los nombres en todos los modos
+        document.querySelectorAll('.mc-name').forEach(el => {
+            if (el.id.includes('mc1')) {
+                el.textContent = mc1Name;
+            } else if (el.id.includes('mc2')) {
+                el.textContent = mc2Name;
+            }
+        });
+
+        document.getElementById('inicio').style.display = 'none';
+        document.getElementById('votacion').style.display = 'block';
+    }
+
+    function showResultPage() {
+        const mc1Scores = document.querySelectorAll('#votacion .mc1');
+        const mc2Scores = document.querySelectorAll('#votacion .mc2');
+        let totalMC1 = 0;
+        let totalMC2 = 0;
+
+        mc1Scores.forEach(input => totalMC1 += parseFloat(input.value) || 0);
+        mc2Scores.forEach(input => totalMC2 += parseFloat(input.value) || 0);
+
+        const mc1Name = document.getElementById('mc1-name').value;
+        const mc2Name = document.getElementById('mc2-name').value;
+
+        document.getElementById('mc1-score').textContent = totalMC1.toFixed(1);
+        document.getElementById('mc2-score').textContent = totalMC2.toFixed(1);
+
+        const mc1ResultElement = document.getElementById('mc1-result');
+        const mc2ResultElement = document.getElementById('mc2-result');
+
+        mc1ResultElement.innerHTML = `${mc1Name} <span id="mc1-score">${totalMC1.toFixed(1)}</span> p`;
+        mc2ResultElement.innerHTML = `${mc2Name} <span id="mc2-score">${totalMC2.toFixed(1)}</span> p`;
+
+        if (totalMC1 > totalMC2) {
+            mc1ResultElement.classList.add('highlight');
+            mc2ResultElement.classList.remove('highlight');
+        } else if (totalMC2 > totalMC1) {
+            mc2ResultElement.classList.add('highlight');
+            mc1ResultElement.classList.remove('highlight');
+        } else {
+            mc1ResultElement.classList.remove('highlight');
+            mc2ResultElement.classList.remove('highlight');
+        }
+
+        document.getElementById('votacion').style.display = 'none';
+        document.getElementById('resultado').style.display = 'block';
+    }
+
+    function resetPage() {
+        document.getElementById('mc1-name').value = '';
+        document.getElementById('mc2-name').value = '';
+        document.querySelectorAll('#votacion .mc1, #votacion .mc2').forEach(input => input.value = '');
+
+        document.getElementById('resultado').style.display = 'none';
+        document.getElementById('inicio').style.display = 'block';
+    }
+</script>
+</body>
+</html>
